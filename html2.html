@@ -1,0 +1,63 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		 <meta charset="UTF-8">
+
+		 <!-- Example for add Stylesheet
+    	 <link rel="stylesheet" type="text/css" href="css/index.css" />
+    	 -->
+
+    	 <title>GC Survey</title>
+
+    	 <script>
+
+    	 	<!-- Store research -->
+
+	    	var questions = ["Qual é o seu nome?", "Qual é seu sexo?", "Quer beber?", "Quer casar?"]; 
+
+    	 	var length = 4;
+
+    	 	var next=0;
+
+			function choose(){
+
+				if(next<length){
+			    	next++;
+				}
+				else{
+					document.getElementById("sum_button").style.visibility="hidden";
+				}
+
+				document.querySelector('.result').innerHTML = questions[next-1];
+			}
+
+			function showAtualQuestion(click){
+			    alert("You chossed " + next);
+			}
+
+    	 </script>
+
+	</head>
+
+	<body>
+
+		<div id="game">
+		    
+		    <button id="sum_button" onClick="choose()"> Next </button>
+
+		    <div class="result">  </div>
+		    
+		    <br>
+
+		    <button onClick="showAtualQuestion()"> Show Atual Question </button>
+
+		</div>
+
+	</body>
+
+</html>
