@@ -81,6 +81,12 @@
 
 				var aid=false;
 
+				alert(next);
+
+				if(next<=length){
+
+					alert(conditional);
+
 					if(conditional==false){
 						answers[answer_id][next-1] = document.getElementById('userInput').value;
 					}
@@ -94,6 +100,48 @@
 					if(aid==false){
 						verify();
 					}
+
+				}
+				else{
+
+					answers[answer_id][next-1] = document.getElementById('userInput').value;
+
+					alert(answers[answer_id][next-1]);
+					
+					$('#question_pre_requisites').hide();
+					$('#answer_pre_requisites').hide();
+					$('#sum_button').hide();
+					$('#pre_requisites').hide();
+					$("#restart").show();
+					$("#showAtualQuestion").hide();
+					$("#answer").hide();
+					$("#result").hide();
+					$('#answer_pre_requisites').hide();
+					$('#answer_user').hide();
+
+			        var vPool="";
+
+			        for(var j=0; j<length; j++){
+
+				        jQuery.each(answers[j], function(i, val) {
+				          
+				          if(val!=undefined){
+
+					          if(i==3){
+					          	vPool += val+ "<br>";
+					          }
+					          else{
+					          	vPool += val+ " - ";
+					          }
+				      	  }
+
+				        });
+
+			    	}
+
+			       //We add vPool HTML content to #myDIV
+			       $('#store').html(vPool);
+				}
 
 			}
 
@@ -125,10 +173,16 @@
 						alert(answers[answer_id][next-1]);
 						next++;
 
-						if(answers[answer_id][p_r[1]]!=p_r[2]){
-							alert('Homem não pode responder!');
-							conditional=true;
-							choose();
+						if(answers[answer_id][p_r[1]]!=p_r[2] & next<=length){
+
+							if(next<length){
+								alert('Não pode responder!');
+								conditional=true;
+								choose();
+							}else{
+								alert('Não pode responder e já tá no final!');
+								conditional=true;
+							}
 						}
 					}
 					else{
@@ -138,6 +192,7 @@
 					}
 				}
 				else{
+					
 					answers[answer_id][next-1] = document.getElementById('userInput').value;
 
 					alert(answers[answer_id][next-1]);
@@ -178,7 +233,56 @@
 
 				}
 
-				document.querySelector('.result').innerHTML = questions[next-1];
+				if(next<length){
+					document.querySelector('.result').innerHTML = questions[next-1];
+				}
+				else{
+
+					if(conditional==false){
+						answers[answer_id][next-1] = document.getElementById('userInput').value;
+					}
+					else{
+						answers[answer_id][next-1] = "x";
+						conditional=false;
+					}
+
+					alert(answers[answer_id][next-1]);
+					
+					$('#question_pre_requisites').hide();
+					$('#answer_pre_requisites').hide();
+					$('#sum_button').hide();
+					$('#pre_requisites').hide();
+					$("#restart").show();
+					$("#showAtualQuestion").hide();
+					$("#answer").hide();
+					$("#result").hide();
+					$('#answer_pre_requisites').hide();
+					$('#answer_user').hide();
+
+			        var vPool="";
+
+			        for(var j=0; j<length; j++){
+
+				        jQuery.each(answers[j], function(i, val) {
+				          
+				          if(val!=undefined){
+
+					          if(i==3){
+					          	vPool += val+ "<br>";
+					          }
+					          else{
+					          	vPool += val+ " - ";
+					          }
+				      	  }
+
+				        });
+
+			    	}
+
+			       //We add vPool HTML content to #myDIV
+			       $('#store').html(vPool);
+
+				}
 			}
 
 			function showAtualQuestion(click){
@@ -186,47 +290,58 @@
 			}
 
 			function restart(click){
-				
+
+				if(next<length){
+
+					document.querySelector('.result').innerHTML = questions[next-1];
+
+					var index=0;
+					var p_r = [length];
+
+					for(var j=0; j<pre_requisites.length; j++){
+							
+							a = pre_requisites[j];
+
+							if(a[0]==next){
+								p_r = pre_requisites[j];
+								index++;
+							}
+					}
+
+					if(p_r[1]!=-1){
+						
+						   document.querySelector('.pre_requisites').innerHTML = "With Pre Requisite";
+							document.querySelector('.question_pre_requisites').innerHTML = "Question: "+(p_r[1]+1);
+							document.querySelector('.answer_pre_requisites').innerHTML = "Answer: "+p_r[2];
+							document.querySelector('.answer_user').innerHTML = "Writed Answer: " + answers[answer_id][p_r[1]];
+							
+							alert(answers[answer_id][next-1]);
+							next++;
+
+							if(answers[answer_id][p_r[1]]!=p_r[2]){
+								conditional=true;
+								choose();
+							}
+						}
+						else{
+							document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
+							document.querySelector('.question_pre_requisites').innerHTML = "";
+							document.querySelector('.answer_pre_requisites').innerHTML = "";
+							document.querySelector('.answer_user').innerHTML = "";
+							alert(answers[answer_id][next-1]);
+					}
+
+				}
+
 				next=1;
 				answer_id++;
 
 				document.querySelector('.result').innerHTML = questions[next-1];
 
-				var index=0;
-				var p_r = [length];
-
-				for(var j=0; j<pre_requisites.length; j++){
-						
-						a = pre_requisites[j];
-
-						if(a[0]==next){
-							p_r = pre_requisites[j];
-							index++;
-						}
-				}
-
-				if(p_r[1]!=-1){
-					
-					   document.querySelector('.pre_requisites').innerHTML = "With Pre Requisite";
-						document.querySelector('.question_pre_requisites').innerHTML = "Question: "+(p_r[1]+1);
-						document.querySelector('.answer_pre_requisites').innerHTML = "Answer: "+p_r[2];
-						document.querySelector('.answer_user').innerHTML = "Writed Answer: " + answers[answer_id][p_r[1]];
-						
-						alert(answers[answer_id][next-1]);
-						next++;
-
-						if(answers[answer_id][p_r[1]]!=p_r[2]){
-							conditional=true;
-							choose();
-						}
-					}
-					else{
-						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
-						document.querySelector('.question_pre_requisites').innerHTML = "";
-						document.querySelector('.answer_pre_requisites').innerHTML = "";
-						document.querySelector('.answer_user').innerHTML = "";
-						alert(answers[answer_id][next-1]);
-				}
+				document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
+				document.querySelector('.question_pre_requisites').innerHTML = "";
+				document.querySelector('.answer_pre_requisites').innerHTML = "";
+				document.querySelector('.answer_user').innerHTML = "";
 
 				$('#question_pre_requisites').show();
 				$('#answer_pre_requisites').show();
