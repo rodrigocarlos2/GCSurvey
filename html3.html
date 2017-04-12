@@ -22,22 +22,60 @@
 	    	var questions = ["Qual é o seu nome?", "Qual é seu sexo?", "Quer beber?", "Quer casar?"];
 
     	 	var length=questions.length;
-    	 	var next=0;
+    	 	var next=1;
+
+    	 	var answers = new Array(length);
 
     	 	$(document).ready(function() {
     	 		// Set Restart Button as Invisible
     			$("#restart").hide();
+    			$("#answer").show();
+
+    			document.querySelector('.result').innerHTML = questions[next-1];
+
 			});
 
 			function choose(){
+
 				if(next<length){
+			    		
+					$("#answer").show();
+			    	
+			    	answers[next-1] = document.getElementById('userInput').value;
+			    	
+			    	alert(answers[next-1]);
+
 			    	next++;
+
 				}
 				else{
+
+					answers[next-1] = document.getElementById('userInput').value;
+					
 					$('#sum_button').hide();
 					$("#restart").show();
+					$("#answer").hide();
+					$("#result").hide();
+
+			        var vPool="";
+			        jQuery.each(answers, function(i, val) {
+			          
+			          if(i==answers.length-1){
+			          	vPool += val+ "<br>";
+			          }
+			          else{
+			          	vPool += val+ " - ";
+			          }
+
+			        });
+
+			       //We add vPool HTML content to #myDIV
+			       $('#store').html(vPool);
+
 				}
+
 				document.querySelector('.result').innerHTML = questions[next-1];
+
 			}
 
 			function showAtualQuestion(click){
@@ -51,7 +89,8 @@
 				next = 1;
 
 				// Restart web page
-				location.reload(); 
+				location.reload();
+
 			}
 
     	 </script>
@@ -66,7 +105,17 @@
 		    
 		    <button id="sum_button" onClick="choose()"> Next </button>
 
-		    <div class="result">  </div>
+		    <br><br>
+
+		    <div id="result" class="result">  </div>
+
+		    <div id="answer">
+
+				<lable id='nameLable'> Answer: </lable>
+
+				<input id='userInput' type='text' maxlength='40'></input>
+
+			</div>
 		    
 		    <br>
 
@@ -75,6 +124,12 @@
 		    <button id="restart" class="restart" onClick="restart()" > Restart </button>
 
 		</div>
+
+		<br><br>
+
+		<h3> Store </h3>
+
+		<div id="store"> </div>
 
 	</body>
 
