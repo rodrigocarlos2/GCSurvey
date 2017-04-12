@@ -19,6 +19,8 @@
 
     	 <script>
 
+    	 	var conditional = false;
+
     	 	<!-- Store research -->
 
 	    	var questions = ["Qual é o seu nome?", "Qual é seu sexo?", "Quer beber?", "Quer casar?"];
@@ -76,7 +78,21 @@
 
 			function choose(){
 
-				if(next<(length)){
+				if(conditional==false){
+					answers[answer_id][next-1] = document.getElementById('userInput').value;
+				}
+				else{
+					answers[answer_id][next-1] = "x";
+				}
+
+				verify();
+
+			}
+
+			function verify(){
+
+				if((next)<(length)){
+					// Rigth
 
 					var index=0;
 					var p_r = [length];
@@ -93,21 +109,24 @@
 						}
 					}
 
-					answers[answer_id][next-1] = document.getElementById('userInput').value;
-
 					if(p_r[1]!=-1){
 						document.querySelector('.pre_requisites').innerHTML = "With Pre Requisite";
 						document.querySelector('.question_pre_requisites').innerHTML = "Question: "+(p_r[1]+1);
 						document.querySelector('.answer_pre_requisites').innerHTML = "Answer: "+p_r[2];
 						document.querySelector('.answer_user').innerHTML = "Writed Answer: " + answers[answer_id][p_r[1]];
+						alert(answers[answer_id][next-1]);
+						next++;
+
+						if(answers[answer_id][p_r[1]]!=p_r[2]){
+							conditional=true;
+							choose();
+						}
 					}
 					else{
 						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
+						alert(answers[answer_id][next-1]);
+						next++;
 					}
-			    	
-			    	alert(answers[answer_id][next-1]);
-
-			    	next++;
 				}
 				else{
 
