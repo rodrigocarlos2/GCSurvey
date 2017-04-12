@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		 <meta charset="UTF-8">
+
+		 <!-- Example for add Stylesheet
+    	 <link rel="stylesheet" type="text/css" href="css/index.css" />
+    	 -->
+
+    	 <title>GC Survey</title>
+
+    	 <script>
+
+    	 <!-- Store research -->
+
+    	 var question1 = "Qual é seu nome?";
+    	 var question2 = "Qual é seu sexo?";
+    	 var question3 = "Quer beber?";
+    	 var question4 = "Quer casar?";
+
+    	 </script>
+
+    	 <script>
+
+    	 	var next=0;
+
+			function choose(){
+			    next++;
+			}
+
+			function test(click){
+			    alert("You chossed " + next);
+			}
+
+    	 </script>
+
+	</head>
+
+	<body>
+
+		<div id="game">
+		    
+		    <button onClick="choose()"> More 1 </button>
+
+		    <div id="result"></div>
+		    
+		    <button onClick="test()"> Next </button>
+		</div>
+
+	</body>
+
+</html>
