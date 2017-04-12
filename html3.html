@@ -67,10 +67,10 @@
 
 			        for(var j=0; j<length; j++){
 
-			        	if(typeof(answers[j])!='undefined'){
+				        jQuery.each(answers[j], function(i, val) {
+				          
+				          if(val!=undefined){
 
-					        jQuery.each(answers[j], function(i, val) {
-					          
 					          if(i==3){
 					          	vPool += val+ "<br>";
 					          }
@@ -78,9 +78,9 @@
 					          	vPool += val+ " - ";
 					          }
 
-					        });
+				      	  }
 
-				    	}
+				        });
 
 			    	}
 
