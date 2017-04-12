@@ -24,7 +24,13 @@
     	 	var length=questions.length;
     	 	var next=1;
 
+    	 	var answer_id = 0;
+
     	 	var answers = new Array(length);
+
+    	 	for(var j=0; j<length; j++){
+    	 		answers[j] = new Array(length);
+    	 	}
 
     	 	$(document).ready(function() {
     	 		// Set Restart Button as Invisible
@@ -41,16 +47,16 @@
 			    		
 					$("#answer").show();
 			    	
-			    	answers[next-1] = document.getElementById('userInput').value;
+			    	answers[answer_id][next-1] = document.getElementById('userInput').value;
 			    	
-			    	alert(answers[next-1]);
+			    	alert(answers[answer_id][next-1]);
 
 			    	next++;
 
 				}
 				else{
 
-					answers[next-1] = document.getElementById('userInput').value;
+					answers[answer_id][next-1] = document.getElementById('userInput').value;
 					
 					$('#sum_button').hide();
 					$("#restart").show();
@@ -58,16 +64,25 @@
 					$("#result").hide();
 
 			        var vPool="";
-			        jQuery.each(answers, function(i, val) {
-			          
-			          if(i==answers.length-1){
-			          	vPool += val+ "<br>";
-			          }
-			          else{
-			          	vPool += val+ " - ";
-			          }
 
-			        });
+			        for(var j=0; j<length; j++){
+
+			        	if(typeof(answers[j])!='undefined'){
+
+					        jQuery.each(answers[j], function(i, val) {
+					          
+					          if(i==3){
+					          	vPool += val+ "<br>";
+					          }
+					          else{
+					          	vPool += val+ " - ";
+					          }
+
+					        });
+
+				    	}
+
+			    	}
 
 			       //We add vPool HTML content to #myDIV
 			       $('#store').html(vPool);
@@ -86,10 +101,13 @@
 
 			function restart(click){
 				
-				next = 1;
+				next=1;
+				answer_id++;
 
-				// Restart web page
-				location.reload();
+				$('#sum_button').show();
+				$("#restart").hide();
+				$("#answer").show();
+				$("#result").show();
 
 			}
 
