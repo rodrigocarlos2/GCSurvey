@@ -1,0 +1,295 @@
+
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		 <meta charset="UTF-8">
+
+		 <!-- Example for add Stylesheet
+    	 <link rel="stylesheet" type="text/css" href="css/index.css" />
+    	 -->
+
+    	 <title>GC Survey</title>
+
+    	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+    	 <script>
+
+    	 	var conditional = false;
+
+    	 	<!-- Store research -->
+
+	    	var questions = ["Qual é o seu nome?", "Qual é seu sexo?", "Quer beber?", "Quer casar?"];
+
+	    	var pre_requisites = [[0,-1, "~"],[1,-1, "~"],[2,1,"Masculino"],[3, 1,"Feminino"]];
+
+    	 	var length=questions.length;
+    	 	var next=1;
+
+    	 	var answer_id = 0;
+
+    	 	var answers = new Array(length);
+
+    	 	for(var j=0; j<length; j++){
+    	 		answers[j] = new Array(length);
+    	 	}
+
+    	 	$(document).ready(function() {
+    	 		// Set Restart Button as Invisible
+    			$("#restart").hide();
+    			$("#answer").show();
+
+    			$('#userInput').keyup(function(e){
+      				if(e.keyCode == 13){
+      					$('#sum_button').click();
+      				}
+    			});
+
+    			document.querySelector('.result').innerHTML = questions[next-1];
+
+    			var index=0;
+				
+				var p_r = new Array(length);
+
+				for(var j=0; j<pre_requisites.length; j++){
+						
+						a = pre_requisites[j];
+
+						if(a[0]==next){
+							p_r = pre_requisites[j];
+							index++;
+						}
+				}
+
+					if(p_r[1]!=-1){
+						document.querySelector('.pre_requisites').innerHTML = "Com Pré-Requisito";
+					}
+					else{
+						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
+						document.querySelector('.question_pre_requisites').innerHTML = "";
+						document.querySelector('.answer_pre_requisites').innerHTML = "";
+					}
+
+			});
+
+			function choose(){
+
+				if(conditional==false){
+					answers[answer_id][next-1] = document.getElementById('userInput').value;
+				}
+				else{
+					answers[answer_id][next-1] = "x";
+					conditional=false;
+				}
+
+				verify();
+
+			}
+
+			function verify(){
+
+				if((next)<(length)){
+					// Rigth
+
+					var index=0;
+					var p_r = [length];
+
+					for(var j=0; j<pre_requisites.length; j++){
+						
+						a = new Array(length);
+
+						a = pre_requisites[j];
+
+						if(a[0]==next){
+							p_r = pre_requisites[j];
+							index++;
+						}
+					}
+
+					if(p_r[1]!=-1){
+						document.querySelector('.pre_requisites').innerHTML = "With Pre Requisite";
+						document.querySelector('.question_pre_requisites').innerHTML = "Question: "+(p_r[1]+1);
+						document.querySelector('.answer_pre_requisites').innerHTML = "Answer: "+p_r[2];
+						document.querySelector('.answer_user').innerHTML = "Writed Answer: " + answers[answer_id][p_r[1]];
+						alert(answers[answer_id][next-1]);
+						next++;
+
+						if(answers[answer_id][p_r[1]]!=p_r[2]){
+							conditional=true;
+							choose();
+						}
+					}
+					else{
+						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
+						alert(answers[answer_id][next-1]);
+						next++;
+					}
+				}
+				else{
+
+					answers[answer_id][next-1] = document.getElementById('userInput').value;
+
+					alert(answers[answer_id][next-1]);
+					
+					$('#question_pre_requisites').hide();
+					$('#answer_pre_requisites').hide();
+					$('#sum_button').hide();
+					$('#pre_requisites').hide();
+					$("#restart").show();
+					$("#showAtualQuestion").hide();
+					$("#answer").hide();
+					$("#result").hide();
+					$('#answer_pre_requisites').hide();
+					$('#answer_user').hide();
+
+			        var vPool="";
+
+			        for(var j=0; j<length; j++){
+
+				        jQuery.each(answers[j], function(i, val) {
+				          
+				          if(val!=undefined){
+
+					          if(i==3){
+					          	vPool += val+ "<br>";
+					          }
+					          else{
+					          	vPool += val+ " - ";
+					          }
+				      	  }
+
+				        });
+
+			    	}
+
+			       //We add vPool HTML content to #myDIV
+			       $('#store').html(vPool);
+
+				}
+
+				document.querySelector('.result').innerHTML = questions[next-1];
+
+			}
+
+			function showAtualQuestion(click){
+			    alert("You chossed " + next);
+			}
+
+			function restart(click){
+				
+				next=1;
+				answer_id++;
+
+				document.querySelector('.result').innerHTML = questions[next-1];
+
+				var index=0;
+				var p_r = [length];
+
+				for(var j=0; j<pre_requisites.length; j++){
+						
+						a = pre_requisites[j];
+
+						if(a[0]==next){
+							p_r = pre_requisites[j];
+							index++;
+						}
+				}
+
+					if(p_r[1]!=-1){
+						document.querySelector('.pre_requisites').innerHTML = "With Pre Requisite";
+						document.querySelector('.question_pre_requisites').innerHTML = "Question: "+(p_r[1]+1);
+						document.querySelector('.answer_pre_requisites').innerHTML = "Answer: "+p_r[2];
+						document.querySelector('.answer_user').innerHTML = "Writed Answer: " + answers[answer_id][p_r[1]];
+						alert(answers[answer_id][next-1]);
+						next++;
+
+						if(answers[answer_id][p_r[1]]!=p_r[2]){
+							conditional=true;
+							choose();
+						}
+					}
+					else{
+						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
+						document.querySelector('.question_pre_requisites').innerHTML = "";
+						document.querySelector('.answer_pre_requisites').innerHTML = "";
+						document.querySelector('.answer_user').innerHTML = "";
+						alert(answers[answer_id][next-1]);
+					}
+
+				$('#question_pre_requisites').show();
+				$('#answer_pre_requisites').show();
+				$('#pre_requisites').show();
+				$('#sum_button').show();
+				$("#showAtualQuestion").show();
+				$("#restart").hide();
+				$("#answer").show();
+				$("#result").show();
+				$('#answer_pre_requisites').show();
+				$('#answer_user').show();
+
+			}
+
+			function change(){
+				document.getElementById('#userInput').value = 'x';
+			}
+
+    	 </script>
+
+	</head>
+
+	<body>
+
+		<div id="game">
+
+			<br>
+		    
+		    <button id="sum_button" onClick="choose()"> Next </button>
+
+		    <br><br>
+
+		    <div id="result" class="result">  </div>
+
+		    <div id="answer">
+
+				<lable id='nameLable'> Answer: </lable>
+
+				<input id='userInput' type='text' maxlength='40' ></input>
+
+			</div>
+
+			<br>
+
+			<div id="pre_requisites" class="pre_requisites">  </div>
+
+			<div id="question_pre_requisites" class="question_pre_requisites">  </div>
+
+			<div id="answer_pre_requisites" class="answer_pre_requisites">  </div>
+
+			<br><br>
+
+			<h3> User Answer </h3>
+
+			<div id="answer_user" class="answer_user">  </div>
+		    
+		    <br>
+
+		    <button id="showAtualQuestion" onClick="showAtualQuestion()"> Show Atual Question </button>
+
+		    <button id="restart" class="restart" onClick="restart()" > Restart </button>
+
+		</div>
+
+		<br><br>
+
+		<h3> Storage </h3>
+
+		<div id="store"> </div>
+
+	</body>
+
+</html>
