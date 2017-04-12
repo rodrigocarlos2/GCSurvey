@@ -14,9 +14,13 @@
 
     	 <title>GC Survey</title>
 
+    	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
     	 <script>
 
     	 	<!-- Store research -->
+
+    	 	$('#restart').hide();
 
 	    	var questions = ["Qual é o seu nome?", "Qual é seu sexo?", "Quer beber?", "Quer casar?"]; 
 
@@ -24,20 +28,28 @@
 
     	 	var next=0;
 
+    	 	document.getElementById("sum_button").style.visibility="hidden";
+
 			function choose(){
 
 				if(next<length){
 			    	next++;
 				}
 				else{
-					document.getElementById("sum_button").style.visibility="hidden";
+					$('#sum_button').hide();
 				}
 
 				document.querySelector('.result').innerHTML = questions[next-1];
 			}
 
 			function showAtualQuestion(click){
+			    
 			    alert("You chossed " + next);
+
+			}
+
+			function restart(click){
+				next = 0;
 			}
 
     	 </script>
@@ -55,6 +67,8 @@
 		    <br>
 
 		    <button onClick="showAtualQuestion()"> Show Atual Question </button>
+
+		    <button id="restart" onClick="restart()"> Restart </button>
 
 		</div>
 
