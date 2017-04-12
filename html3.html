@@ -60,6 +60,7 @@
 					
 					$('#sum_button').hide();
 					$("#restart").show();
+					$("#showAtualQuestion").hide();
 					$("#answer").hide();
 					$("#result").hide();
 
@@ -104,7 +105,10 @@
 				next=1;
 				answer_id++;
 
+				document.querySelector('.result').innerHTML = questions[next-1];
+
 				$('#sum_button').show();
+				$("#showAtualQuestion").show();
 				$("#restart").hide();
 				$("#answer").show();
 				$("#result").show();
@@ -137,7 +141,7 @@
 		    
 		    <br>
 
-		    <button onClick="showAtualQuestion()"> Show Atual Question </button>
+		    <button id="showAtualQuestion" onClick="showAtualQuestion()"> Show Atual Question </button>
 
 		    <button id="restart" class="restart" onClick="restart()" > Restart </button>
 
