@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html>
@@ -18,12 +19,15 @@
 
     	 	<!-- Store research -->
 
-    	 	$('#restart').hide();
+	    	var questions = ["Qual é o seu nome?", "Qual é seu sexo?", "Quer beber?", "Quer casar?"];
 
-	    	var questions = ["Qual é o seu nome?", "Qual é seu sexo?", "Quer beber?", "Quer casar?"]; 
-
-    	 	var length = 4;
+    	 	var length=questions.length;
     	 	var next=0;
+
+    	 	$(document).ready(function() {
+    	 		// Set Restart Button as Invisible
+    			$("#restart").hide();
+			});
 
 			function choose(){
 				if(next<length){
@@ -31,6 +35,7 @@
 				}
 				else{
 					$('#sum_button').hide();
+					$("#restart").show();
 				}
 				document.querySelector('.result').innerHTML = questions[next-1];
 			}
@@ -67,7 +72,7 @@
 
 		    <button onClick="showAtualQuestion()"> Show Atual Question </button>
 
-		    <button id="restart" onClick="restart()"> Restart </button>
+		    <button id="restart" class="restart" onClick="restart()" > Restart </button>
 
 		</div>
 
