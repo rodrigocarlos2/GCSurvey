@@ -81,19 +81,19 @@
 
 				var aid=false;
 
-				if(conditional==false){
-					answers[answer_id][next-1] = document.getElementById('userInput').value;
-				}
-				else{
-					answers[answer_id][next-1] = "x";
-					conditional=false;
-					next++;
-					aid=true;
-				}
+					if(conditional==false){
+						answers[answer_id][next-1] = document.getElementById('userInput').value;
+					}
+					else{
+						answers[answer_id][next-1] = "x";
+						conditional=false;
+						next++;
+						aid=true;
+					}
 
-				if(aid==false){
-					verify();
-				}
+					if(aid==false){
+						verify();
+					}
 
 			}
 
@@ -101,6 +101,7 @@
 
 				if((next)<(length)){
 
+					var notworking=false;
 					var index=0;
 					var p_r = [length];
 
@@ -125,6 +126,7 @@
 						next++;
 
 						if(answers[answer_id][p_r[1]]!=p_r[2]){
+							alert('Homem não pode responder!');
 							conditional=true;
 							choose();
 						}
@@ -209,6 +211,7 @@
 						document.querySelector('.question_pre_requisites').innerHTML = "Question: "+(p_r[1]+1);
 						document.querySelector('.answer_pre_requisites').innerHTML = "Answer: "+p_r[2];
 						document.querySelector('.answer_user').innerHTML = "Writed Answer: " + answers[answer_id][p_r[1]];
+						
 						alert(answers[answer_id][next-1]);
 						next++;
 
