@@ -82,7 +82,6 @@
 						}
 					}
 
-					// Verifica se tem Pré-Requisito ou Não.
 					if(p_r[1]!=-1){
 						document.querySelector('.pre_requisites').innerHTML = "Com Pré-Requisito";
 					}
@@ -93,7 +92,8 @@
 			    	answers[answer_id][next-1] = document.getElementById('userInput').value;
 			    	
 			    	alert(answers[answer_id][next-1]);
-			    	
+
+			    	next++;
 				}
 				else{
 
@@ -162,12 +162,12 @@
 						}
 				}
 
-				if(p_r[1]!=-1){
+					if(p_r[1]!=-1){
 						document.querySelector('.pre_requisites').innerHTML = "Com Pré-Requisito";
-				}
-				else{
+					}
+					else{
 						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
-				}
+					}
 
 				$('#pre_requisites').show();
 				$('#sum_button').show();
