@@ -21,6 +21,8 @@
 
 	    	var questions = ["Qual é o seu nome?", "Qual é seu sexo?", "Quer beber?", "Quer casar?"];
 
+	    	var pre_requisites = [[0,-1, "~"],[1,-1, "~"],[2,1,"Masculino"],[3, 1,"Feminino"]];
+
     	 	var length=questions.length;
     	 	var next=1;
 
@@ -39,6 +41,26 @@
 
     			document.querySelector('.result').innerHTML = questions[next-1];
 
+    			var index=0;
+					var p_r = [length];
+
+					for(var j=0; j<pre_requisites.length; j++){
+						
+						a = pre_requisites[j];
+
+						if(a[0]==next){
+							p_r = pre_requisites[j];
+							index++;
+						}
+					}
+
+					if(p_r[1]!=-1){
+						document.querySelector('.pre_requisites').innerHTML = "Com Pré-Requisito";
+					}
+					else{
+						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
+					}
+
 			});
 
 			function choose(){
@@ -46,19 +68,39 @@
 				if(next<length){
 			    		
 					$("#answer").show();
+
+					var index=0;
+					var p_r = [length];
+
+					for(var j=0; j<pre_requisites.length; j++){
+						
+						a = pre_requisites[j];
+
+						if(a[0]==next){
+							p_r = pre_requisites[j];
+							index++;
+						}
+					}
+
+					// Verifica se tem Pré-Requisito ou Não.
+					if(p_r[1]!=-1){
+						document.querySelector('.pre_requisites').innerHTML = "Com Pré-Requisito";
+					}
+					else{
+						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
+					}
 			    	
 			    	answers[answer_id][next-1] = document.getElementById('userInput').value;
 			    	
 			    	alert(answers[answer_id][next-1]);
-
-			    	next++;
-
+			    	
 				}
 				else{
 
 					answers[answer_id][next-1] = document.getElementById('userInput').value;
 					
 					$('#sum_button').hide();
+					$('#pre_requisites').hide();
 					$("#restart").show();
 					$("#showAtualQuestion").hide();
 					$("#answer").hide();
@@ -107,6 +149,27 @@
 
 				document.querySelector('.result').innerHTML = questions[next-1];
 
+				var index=0;
+				var p_r = [length];
+
+				for(var j=0; j<pre_requisites.length; j++){
+						
+						a = pre_requisites[j];
+
+						if(a[0]==next){
+							p_r = pre_requisites[j];
+							index++;
+						}
+				}
+
+				if(p_r[1]!=-1){
+						document.querySelector('.pre_requisites').innerHTML = "Com Pré-Requisito";
+				}
+				else{
+						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
+				}
+
+				$('#pre_requisites').show();
 				$('#sum_button').show();
 				$("#showAtualQuestion").show();
 				$("#restart").hide();
@@ -138,6 +201,10 @@
 				<input id='userInput' type='text' maxlength='40'></input>
 
 			</div>
+
+			<br>
+
+			<div id="pre_requisites" class="pre_requisites">  </div>
 		    
 		    <br>
 
