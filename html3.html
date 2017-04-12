@@ -59,6 +59,8 @@
 					}
 					else{
 						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
+						document.querySelector('.question_pre_requisites').innerHTML = "";
+						document.querySelector('.answer_pre_requisites').innerHTML = "";
 					}
 
 			});
@@ -83,7 +85,9 @@
 					}
 
 					if(p_r[1]!=-1){
-						document.querySelector('.pre_requisites').innerHTML = "Com Pré-Requisito";
+						document.querySelector('.pre_requisites').innerHTML = "With Pre Requisite";
+						document.querySelector('.question_pre_requisites').innerHTML = "Question: "+(p_r[1]+1);
+						document.querySelector('.answer_pre_requisites').innerHTML = "Answer: "+p_r[2];
 					}
 					else{
 						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
@@ -99,6 +103,8 @@
 
 					answers[answer_id][next-1] = document.getElementById('userInput').value;
 					
+					$('#question_pre_requisites').hide();
+					$('#answer_pre_requisites').hide();
 					$('#sum_button').hide();
 					$('#pre_requisites').hide();
 					$("#restart").show();
@@ -164,11 +170,17 @@
 
 					if(p_r[1]!=-1){
 						document.querySelector('.pre_requisites').innerHTML = "Com Pré-Requisito";
+						document.querySelector('.question_pre_requisites').innerHTML = "Question: "+(p_r[1]+1);
+						document.querySelector('.answer_pre_requisites').innerHTML = "Answer: "+p_r[2];
 					}
 					else{
 						document.querySelector('.pre_requisites').innerHTML = "Sem Pré-Requisito";
+						document.querySelector('.question_pre_requisites').innerHTML = "";
+						document.querySelector('.answer_pre_requisites').innerHTML = "";
 					}
 
+				$('#question_pre_requisites').show();
+				$('#answer_pre_requisites').show();
 				$('#pre_requisites').show();
 				$('#sum_button').show();
 				$("#showAtualQuestion").show();
@@ -205,6 +217,10 @@
 			<br>
 
 			<div id="pre_requisites" class="pre_requisites">  </div>
+
+			<div id="question_pre_requisites" class="question_pre_requisites">  </div>
+
+			<div id="answer_pre_requisites" class="answer_pre_requisites">  </div>
 		    
 		    <br>
 
@@ -216,7 +232,7 @@
 
 		<br><br>
 
-		<h3> Store </h3>
+		<h3> Storage </h3>
 
 		<div id="store"> </div>
 
