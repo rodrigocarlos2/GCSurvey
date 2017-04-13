@@ -142,6 +142,8 @@
 
 			function verify(){
 
+				var signal=false;
+
 				if((next)<(length)){
 
 					var notworking=false;
@@ -172,6 +174,7 @@
 							if(next<length){
 								alert('Não pode responder!');
 								conditional=true;
+								signal=true;
 								choose();
 							}else{
 								alert('Não pode responder e já tá no final!');
@@ -243,47 +246,87 @@
 				}
 				else{
 
-					if(conditional==false){
+					if(conditional==false && signal==false){
+						
 						answers[answer_id][next-1] = document.getElementById('userInput').value;
+
+						$('#question_pre_requisites').hide();
+						$('#answer_pre_requisites').hide();
+						$('#sum_button').hide();
+						$('#pre_requisites').hide();
+						$("#restart").show();
+						$("#showAtualQuestion").hide();
+						$("#answer").hide();
+						$("#result").hide();
+						$('#answer_pre_requisites').hide();
+						$('#answer_user').hide();
+
+				        var vPool="";
+
+				        for(var j=0; j<length; j++){
+
+					        jQuery.each(answers[j], function(i, val) {
+					          
+					          if(val!=undefined){
+
+						          if(i==3){
+						          	vPool += val+ "<br>";
+						          }
+						          else{
+						          	vPool += val+ " - ";
+						          }
+					      	  }
+
+					        });
+
+				    	}
+
+				       //We add vPool HTML content to #myDIV
+				       $('#store').html(vPool);
+					}
+					else if(conditional==false && signal==true){
+						signal=false;
+						document.querySelector('.result').innerHTML = questions[next-1];
 					}
 					else{
+
 						answers[answer_id][next-1] = "x";
 						conditional=false;
+
+						$('#question_pre_requisites').hide();
+						$('#answer_pre_requisites').hide();
+						$('#sum_button').hide();
+						$('#pre_requisites').hide();
+						$("#restart").show();
+						$("#showAtualQuestion").hide();
+						$("#answer").hide();
+						$("#result").hide();
+						$('#answer_pre_requisites').hide();
+						$('#answer_user').hide();
+
+				        var vPool="";
+
+				        for(var j=0; j<length; j++){
+
+					        jQuery.each(answers[j], function(i, val) {
+					          
+					          if(val!=undefined){
+
+						          if(i==3){
+						          	vPool += val+ "<br>";
+						          }
+						          else{
+						          	vPool += val+ " - ";
+						          }
+					      	  }
+
+					        });
+
+				    	}
+
+				       //We add vPool HTML content to #myDIV
+				       $('#store').html(vPool);
 					}
-					
-					$('#question_pre_requisites').hide();
-					$('#answer_pre_requisites').hide();
-					$('#sum_button').hide();
-					$('#pre_requisites').hide();
-					$("#restart").show();
-					$("#showAtualQuestion").hide();
-					$("#answer").hide();
-					$("#result").hide();
-					$('#answer_pre_requisites').hide();
-					$('#answer_user').hide();
-
-			        var vPool="";
-
-			        for(var j=0; j<length; j++){
-
-				        jQuery.each(answers[j], function(i, val) {
-				          
-				          if(val!=undefined){
-
-					          if(i==3){
-					          	vPool += val+ "<br>";
-					          }
-					          else{
-					          	vPool += val+ " - ";
-					          }
-				      	  }
-
-				        });
-
-			    	}
-
-			       //We add vPool HTML content to #myDIV
-			       $('#store').html(vPool);
 
 				}
 			}
