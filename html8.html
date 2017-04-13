@@ -22,9 +22,9 @@
 
     	 	<!-- Store research -->
 
-	    	var questions = ["Qual é o seu nome?", "Você fuma?", "Que drogas?"];
+	    	var questions = ["Qual é o seu nome?", "Qual o seu sexo?", "Que posição mais gosta?", "Em quanto tempo gosta de transar?"];
 
-	    	var pre_requisites = [[0,-1, "~"],[1,-1, "~"],[2,1,"Sim"]];
+	    	var pre_requisites = [[0,-1, "~"],[1,-1, "~"],[2,1,"Feminino"],[3,1,"Feminino"]];
 
     	 	var length = questions.length;
 
@@ -105,12 +105,117 @@
 					if(aid==false){
 						verify();
 					}
+					else{
+
+						var index=0;
+						var p_r = [length];
+
+						for(var j=0; j<pre_requisites.length; j++){
+							
+							a = new Array(length);
+
+							a = pre_requisites[j];
+
+							if(a[0]==next){
+								p_r = pre_requisites[j];
+								index++;
+							}
+						}
+
+						if(p_r[1]!=-1){
+							
+							document.querySelector('.pre_requisites').innerHTML = "With Pre Requisite";
+							document.querySelector('.question_pre_requisites').innerHTML = "Question: "+(p_r[1]+1);
+							document.querySelector('.answer_pre_requisites').innerHTML = "Answer: "+p_r[2];
+							$("#userAnswer").show();
+							document.querySelector('.answer_user').innerHTML = "Writed Answer: " + answers[answer_id][p_r[1]];
+							next++;
+
+							if(answers[answer_id][p_r[1]]!=p_r[2] & next<=length){
+
+								if(next<length){
+									next++;
+									conditional=true;
+								}
+							}
+							else{
+								conditional = true;
+							}
+						}
+
+						if(conditional==false){
+							answers[answer_id][next-1] = document.getElementById('userInput').value;
+						}
+						else{
+							answers[answer_id][next-1] = "x";
+							conditional=false;
+							next++;
+							aid=true;
+						}
+						
+						$('#question_pre_requisites').hide();
+						$('#answer_pre_requisites').hide();
+						$('#sum_button').hide();
+						$('#pre_requisites').hide();
+						$("#restart").show();
+						$("#showAtualQuestion").hide();
+						$("#userAnswer").hide();
+						$("#answer").hide();
+						$("#result").hide();
+						$('#answer_pre_requisites').hide();
+						$('#answer_user').hide();
+
+						if((answer_id+1)>=number_of_users){
+	    					$("#restart").hide();
+	    					$("#restart").hide();
+	    					$('#question_pre_requisites').hide();
+							$('#answer_pre_requisites').hide();
+							$('#sum_button').hide();
+							$('#pre_requisites').hide();
+							$("#showAtualQuestion").hide();
+							$("#userAnswer").hide();
+							$("#answer").hide();
+							$("#result").hide();
+							$('#answer_pre_requisites').hide();
+							$('#answer_user').hide();
+	    				}
+
+				        var vPool="";
+
+				        for(var j=0; j<(answer_id+1); j++){
+
+					        jQuery.each(answers[j], function(i, val) {
+					          
+					          if(val!=undefined){
+
+						          if(i==(length-1)){
+						          	vPool += val+ "<br>";
+						          }
+						          else{
+						          	vPool += val+ " - ";
+						          }
+					      	  }
+
+					        });
+
+				    	}
+
+				       //We add vPool HTML content to #myDIV
+				       $('#store').html(vPool);
+					}
 
 				}
 				else{
 
-					alert('Salvou2');
-					answers[answer_id][next-1] = document.getElementById('userInput').value;
+					if(conditional==false){
+						answers[answer_id][next-1] = document.getElementById('userInput').value;
+					}
+					else{
+						answers[answer_id][next-1] = "x";
+						conditional=false;
+						next++;
+						aid=true;
+					}
 					
 					$('#question_pre_requisites').hide();
 					$('#answer_pre_requisites').hide();
@@ -203,6 +308,7 @@
 								alert('Aloha1');
 								choose();
 							}else{
+								alert('Aloha2');
 								conditional=true;
 							}
 						}
@@ -214,8 +320,7 @@
 					}
 				}
 				else{
-
-					alert('Salvou3');
+					
 					answers[answer_id][next-1] = document.getElementById('userInput').value;
 					
 					$('#question_pre_requisites').hide();
