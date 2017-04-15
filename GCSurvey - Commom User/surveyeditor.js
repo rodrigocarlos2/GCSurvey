@@ -4181,7 +4181,7 @@ var SurveyEditor = (function () {
         //this.showJSONEditorTabValue = options && typeof (options.showJSONEditorTab) !== 'undefined' ? options.showJSONEditorTab : true;
         this.showTestSurveyTabValue = options && typeof (options.showTestSurveyTab) !== 'undefined' ? options.showTestSurveyTab : true;
         //this.showEmbededSurveyTabValue = options && typeof (options.showEmbededSurveyTab) !== 'undefined' ? options.showEmbededSurveyTab : false;
-        this.koShowOptions(options && typeof (options.showOptions) !== 'undefined' ? options.showOptions : false);
+        //this.koShowOptions(options && typeof (options.showOptions) !== 'undefined' ? options.showOptions : false);
         this.koGenerateValidJSON(this.options && this.options.generateValidJSON);
         if (options && options.designerHeight) {
             this.koDesignerHeight(options.designerHeight);
