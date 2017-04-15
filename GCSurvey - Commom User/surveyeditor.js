@@ -4157,9 +4157,9 @@ var SurveyEditor = (function () {
         this.koViewType = __WEBPACK_IMPORTED_MODULE_0_knockout__["observable"]("designer");
         this.koIsShowDesigner = __WEBPACK_IMPORTED_MODULE_0_knockout__["computed"](function () { return self.koViewType() == "designer"; });
         this.selectDesignerClick = function () { self.showDesigner(); };
-        this.selectEditorClick = function () { self.showJsonEditor(); };
+        this.selectEditorClick = function () { /* self.showJsonEditor(); */ };
         this.selectTestClick = function () { self.showTestSurvey(); };
-        this.selectEmbedClick = function () { self.showEmbedEditor(); };
+        this.selectEmbedClick = function () { /* self.showEmbedEditor(); */ };
         this.generateValidJSONClick = function () { self.koGenerateValidJSON(true); };
         this.generateReadableJSONClick = function () { self.koGenerateValidJSON(false); };
         this.runSurveyClick = function () { self.showLiveSurvey(); };
@@ -4178,9 +4178,9 @@ var SurveyEditor = (function () {
     }
     SurveyEditor.prototype.setOptions = function (options) {
         this.options = options;
-        this.showJSONEditorTabValue = options && typeof (options.showJSONEditorTab) !== 'undefined' ? options.showJSONEditorTab : true;
+        //this.showJSONEditorTabValue = options && typeof (options.showJSONEditorTab) !== 'undefined' ? options.showJSONEditorTab : true;
         this.showTestSurveyTabValue = options && typeof (options.showTestSurveyTab) !== 'undefined' ? options.showTestSurveyTab : true;
-        this.showEmbededSurveyTabValue = options && typeof (options.showEmbededSurveyTab) !== 'undefined' ? options.showEmbededSurveyTab : false;
+        //this.showEmbededSurveyTabValue = options && typeof (options.showEmbededSurveyTab) !== 'undefined' ? options.showEmbededSurveyTab : false;
         this.koShowOptions(options && typeof (options.showOptions) !== 'undefined' ? options.showOptions : false);
         this.koGenerateValidJSON(this.options && this.options.generateValidJSON);
         if (options && options.designerHeight) {
