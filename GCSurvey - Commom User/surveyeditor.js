@@ -173,18 +173,18 @@ var defaultStrings = {
         matrixdynamic: "Matrix (dynamic rows)",
         multipletext: "Multiple Text",
         panel: "Panel",
-        radiogroup: "Radiogroup",
+        radiogroup: "Radio Group",
         rating: "Rating",
-        text: "Single Input"
+        text: "Text Input"
     },
     //Strings in Editor
     ed: {
-        addNewPage: "Add New Page",
-        newPageName: "page",
-        newQuestionName: "question",
-        newPanelName: "panel",
-        testSurvey: "Test Survey",
-        testSurveyAgain: "Test Survey Again",
+        addNewPage: "Add New Question",
+        newPageName: "Question",
+        newQuestionName: "Question Name",
+        newPanelName: "Panel Name",
+        testSurvey: "Apply Survey",
+        testSurveyAgain: "Apply Survey Again",
         testSurveyWidth: "Survey width: ",
         embedSurvey: "Embed Survey",
         saveSurvey: "Save Survey",
