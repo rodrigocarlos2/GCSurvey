@@ -4178,6 +4178,7 @@ var SurveyEditor = (function () {
     }
     SurveyEditor.prototype.setOptions = function (options) {
         this.options = options;
+        // Comments for show Commom User privilege
         //this.showJSONEditorTabValue = options && typeof (options.showJSONEditorTab) !== 'undefined' ? options.showJSONEditorTab : true;
         this.showTestSurveyTabValue = options && typeof (options.showTestSurveyTab) !== 'undefined' ? options.showTestSurveyTab : true;
         //this.showEmbededSurveyTabValue = options && typeof (options.showEmbededSurveyTab) !== 'undefined' ? options.showEmbededSurveyTab : false;
