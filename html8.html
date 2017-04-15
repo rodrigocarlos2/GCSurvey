@@ -57,6 +57,7 @@
       				}
     			});
 
+    			alert('Result1');
     			document.querySelector('.result').innerHTML = questions[next-1];
 
     			var index=0;
@@ -123,7 +124,6 @@
 						}
 
 						if(p_r[1]!=-1){
-							
 							document.querySelector('.pre_requisites').innerHTML = "With Pre Requisite";
 							document.querySelector('.question_pre_requisites').innerHTML = "Question: "+(p_r[1]+1);
 							document.querySelector('.answer_pre_requisites').innerHTML = "Answer: "+p_r[2];
@@ -138,70 +138,67 @@
 									conditional=true;
 								}
 							}
-							else{
-								conditional = true;
-							}
 						}
 
-						if(conditional==false){
-							answers[answer_id][next-1] = document.getElementById('userInput').value;
-						}
-						else{
-							answers[answer_id][next-1] = "x";
-							conditional=false;
-							next++;
-							aid=true;
-						}
-						
-						$('#question_pre_requisites').hide();
+					if(conditional==false){
+						answers[answer_id][next-1] = document.getElementById('userInput').value;
+					}
+					else{
+						answers[answer_id][next-1] = "x";
+						conditional=false;
+						next++;
+						aid=true;
+					}
+					
+					$('#question_pre_requisites').hide();
+					$('#answer_pre_requisites').hide();
+					$('#sum_button').hide();
+					$('#pre_requisites').hide();
+					$("#restart").show();
+					$("#showAtualQuestion").hide();
+					$("#userAnswer").hide();
+					$("#answer").hide();
+					$("#result").hide();
+					$('#answer_pre_requisites').hide();
+					$('#answer_user').hide();
+
+					if((answer_id+1)>=number_of_users){
+    					$("#restart").hide();
+    					$("#restart").hide();
+    					$('#question_pre_requisites').hide();
 						$('#answer_pre_requisites').hide();
 						$('#sum_button').hide();
 						$('#pre_requisites').hide();
-						$("#restart").show();
 						$("#showAtualQuestion").hide();
 						$("#userAnswer").hide();
 						$("#answer").hide();
 						$("#result").hide();
 						$('#answer_pre_requisites').hide();
 						$('#answer_user').hide();
+    				}
 
-						if((answer_id+1)>=number_of_users){
-	    					$("#restart").hide();
-	    					$("#restart").hide();
-	    					$('#question_pre_requisites').hide();
-							$('#answer_pre_requisites').hide();
-							$('#sum_button').hide();
-							$('#pre_requisites').hide();
-							$("#showAtualQuestion").hide();
-							$("#userAnswer").hide();
-							$("#answer").hide();
-							$("#result").hide();
-							$('#answer_pre_requisites').hide();
-							$('#answer_user').hide();
-	    				}
+			        var vPool="";
 
-				        var vPool="";
+			        for(var j=0; j<(answer_id+1); j++){
 
-				        for(var j=0; j<(answer_id+1); j++){
+				        jQuery.each(answers[j], function(i, val) {
+				          
+				          if(val!=undefined){
 
-					        jQuery.each(answers[j], function(i, val) {
-					          
-					          if(val!=undefined){
+					          if(i==(length-1)){
+					          	vPool += val+ "<br>";
+					          }
+					          else{
+					          	vPool += val+ " - ";
+					          }
+				      	  }
 
-						          if(i==(length-1)){
-						          	vPool += val+ "<br>";
-						          }
-						          else{
-						          	vPool += val+ " - ";
-						          }
-					      	  }
+				        });
 
-					        });
+			    	}
 
-				    	}
-
-				       //We add vPool HTML content to #myDIV
-				       $('#store').html(vPool);
+			       //We add vPool HTML content to #myDIV
+			       $('#store').html(vPool);
 					}
 
 				}
@@ -293,11 +290,16 @@
 					}
 
 					if(p_r[1]!=-1){
+
 						document.querySelector('.pre_requisites').innerHTML = "With Pre Requisite";
+						
 						document.querySelector('.question_pre_requisites').innerHTML = "Question: "+(p_r[1]+1);
+						
 						document.querySelector('.answer_pre_requisites').innerHTML = "Answer: "+p_r[2];
 						$("#userAnswer").show();
+						
 						document.querySelector('.answer_user').innerHTML = "Writed Answer: " + answers[answer_id][p_r[1]];
+						
 						next++;
 
 						if(answers[answer_id][p_r[1]]!=p_r[2] & next<=length){
@@ -315,7 +317,7 @@
 					}
 					else{
 						document.querySelector('.pre_requisites').innerHTML = "Without Pre Requisite";
-						$("#userAnswer").hide();
+						//$('#userAnswer').hide();
 						next++;
 					}
 				}
@@ -390,6 +392,7 @@
 				}
 
 				if(next<length){
+					alert('Result2');
 					document.querySelector('.result').innerHTML = questions[next-1];
 				}
 				else{
@@ -453,6 +456,7 @@
 					}
 					else if(conditional==false && signal==true){
 						signal=false;
+						alert('Result3');
 						document.querySelector('.result').innerHTML = questions[next-1];
 					}
 					else{
@@ -521,6 +525,7 @@
 
 				if(next<length){
 
+					alert('Result4');
 					document.querySelector('.result').innerHTML = questions[next-1];
 
 					var index=0;
@@ -566,6 +571,7 @@
 
 				conditional=false;
 
+				alert('Result5');
 				document.querySelector('.result').innerHTML = questions[next-1];
 
 				document.querySelector('.pre_requisites').innerHTML = "Without Pre Requisite";
