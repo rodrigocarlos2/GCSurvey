@@ -180,7 +180,7 @@ var defaultStrings = {
     //Strings in Editor
     ed: {
         addNewPage: "Add New Question",
-        newPageName: "Question",
+        newPageName: "page",
         newQuestionName: "Question Name",
         newPanelName: "Panel Name",
         testSurvey: "Apply Survey",
