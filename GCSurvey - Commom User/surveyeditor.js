@@ -640,6 +640,7 @@ var SurveyHelper = (function () {
 
 
 var SurveyObjectEditor = (function () {
+
     function SurveyObjectEditor(propertyEditorOptions) {
         if (propertyEditorOptions === void 0) { propertyEditorOptions = null; }
         this.propertyEditorOptions = null;
@@ -2398,6 +2399,7 @@ DragDropHelper.ScrollOffset = 100;
 
 
 var SurveyObjectProperty = (function () {
+
     function SurveyObjectProperty(property, onPropertyChanged, propertyEditorOptions) {
         if (onPropertyChanged === void 0) { onPropertyChanged = null; }
         if (propertyEditorOptions === void 0) { propertyEditorOptions = null; }
@@ -2415,7 +2417,7 @@ var SurveyObjectProperty = (function () {
             this.editorType = "dropdown";
         }
         var onItemChanged = function (newValue) { self.onApplyEditorValue(newValue); };
-        this.editor = __WEBPACK_IMPORTED_MODULE_1__propertyEditors_propertyEditorBase__["a" /* SurveyPropertyEditorBase */].createEditor(this.editorType, onItemChanged);
+        this.editor = __WEBPACK_IMPORTED_MODULE_1__propertyEditors_propertyEditorBase__["a"].createEditor(this.editorType, onItemChanged);
         this.editor.onGetLocale = this.doOnGetLocale;
         this.editor.options = propertyEditorOptions;
         this.editorType = this.editor.editorType;
@@ -2425,6 +2427,7 @@ var SurveyObjectProperty = (function () {
         this.koText = __WEBPACK_IMPORTED_MODULE_0_knockout__["computed"](function () { return self.getValueText(self.koValue()); });
         this.koIsDefault = __WEBPACK_IMPORTED_MODULE_0_knockout__["computed"](function () { return self.property.isDefaultValue(self.koValue()); });
     }
+
     SurveyObjectProperty.prototype.doOnGetLocale = function () {
         if (this.object && this.object["getLocale"])
             return this.object.getLocale();
@@ -2443,7 +2446,7 @@ var SurveyObjectProperty = (function () {
         this.isValueUpdating = true;
         this.koValue(this.getValue());
         this.editor.setObject(this.object);
-        this.editor.setTitle(__WEBPACK_IMPORTED_MODULE_2__editorLocalization__["a" /* editorLocalization */].getString("pe.editProperty")["format"](this.property.name));
+        this.editor.setTitle(__WEBPACK_IMPORTED_MODULE_2__editorLocalization__["a"].getString("pe.editProperty")["format"](this.property.name));
         this.updateEditorData(this.koValue());
         this.isValueUpdating = false;
     };
@@ -2476,8 +2479,6 @@ var SurveyObjectProperty = (function () {
     SurveyObjectProperty.prototype.getValueText = function (value) { return this.editor.getValueText(value); };
     return SurveyObjectProperty;
 }());
-
-
 
 /***/ }),
 /* 14 */
@@ -2941,7 +2942,7 @@ SurveyQuestionEditorDefinition.definition = {
         properties: [{ name: "showPreview", category: "imageChecks" }, { name: "storeDataAsText", category: "imageChecks" }, "maxSize", "imageHeight", "imageWidth"]
     },
     "html": {
-        tabs: [{ name: "html", index: 10 }]
+        tabs: [{ name: "html", index: 10}]
     },
     "matrixdropdownbase": {
         properties: ["cellType"],
