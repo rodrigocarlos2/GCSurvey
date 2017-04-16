@@ -870,13 +870,6 @@ __WEBPACK_IMPORTED_MODULE_2__propertyEditorBase__["a" /* SurveyPropertyEditorBas
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return SurveyQuestionEditorTabGeneral; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return SurveyQuestionEditorTabProperty; });
 
-
-
-
-
-
-
-
 var SurveyPropertyEditorShowWindow = (function () {
     function SurveyPropertyEditorShowWindow() {
         this.koVisible = __WEBPACK_IMPORTED_MODULE_1_knockout__["observable"](false);
@@ -2936,6 +2929,7 @@ var SurveyQuestionEditorDefinition = (function () {
 }());
 
 SurveyQuestionEditorDefinition.definition = {
+
     "questionbase": {
         properties: ["name", "title", { name: "visible", category: "checks" }, { name: "isRequired", category: "checks" }, { name: "startWithNewLine", category: "checks" }],
         tabs: [{ name: "visibleIf", index: 100 }]
@@ -3201,13 +3195,18 @@ var SurveyQuestionEditorGeneralProperties = (function () {
 
 var QuestionToolbox = (function () {
     function QuestionToolbox(supportedQuestions) {
-        if (supportedQuestions === void 0) { supportedQuestions = null; }
+        
+        if (supportedQuestions === void 0) { 
+            supportedQuestions = null; 
+        }
+
         this.orderedQuestions = ["text", "checkbox", "radiogroup", "dropdown", "comment", "rating", "html"];
         this.copiedItemMaxCount = 3;
         this.itemsValue = [];
         this.koItems = __WEBPACK_IMPORTED_MODULE_0_knockout__["observableArray"]();
         this.createDefaultItems(supportedQuestions);
     }
+
     Object.defineProperty(QuestionToolbox.prototype, "jsonText", {
         get: function () {
             return JSON.stringify(this.itemsValue);
@@ -3251,6 +3250,7 @@ var QuestionToolbox = (function () {
         enumerable: true,
         configurable: true
     });
+
     QuestionToolbox.prototype.addItems = function (items, clearAll) {
         if (clearAll === void 0) { clearAll = false; }
         if (clearAll) {
@@ -3258,6 +3258,7 @@ var QuestionToolbox = (function () {
         }
         this.onItemsChanged();
     };
+
     QuestionToolbox.prototype.addCopiedItem = function (question) {
         var item = { name: question.name, title: question.name, isCopied: true, iconName: "icon-default", json: this.getQuestionJSON(question) };
         if (this.replaceItem(item))
@@ -3267,10 +3268,12 @@ var QuestionToolbox = (function () {
             this.removeItem(copied[this.copiedItemMaxCount - 1].name);
         this.addItem(item);
     };
+
     QuestionToolbox.prototype.addItem = function (item) {
         this.itemsValue.push(item);
         this.onItemsChanged();
     };
+
     QuestionToolbox.prototype.replaceItem = function (item) {
         var index = this.indexOf(item.name);
         if (index < 0)
@@ -3279,6 +3282,7 @@ var QuestionToolbox = (function () {
         this.onItemsChanged();
         return true;
     };
+
     QuestionToolbox.prototype.removeItem = function (name) {
         var index = this.indexOf(name);
         if (index < 0)
@@ -3797,6 +3801,7 @@ function elementOnCreating(self, className) {
         }
     });
 }
+
 function addEmptyPanelElement(root, dragDropHelper, self) {
     var eDiv = document.createElement("div");
     eDiv.className = "well";
@@ -3811,6 +3816,7 @@ function addEmptyPanelElement(root, dragDropHelper, self) {
 }
 var question_design_class = "svd_question well well-sm svd_q_design_border";
 var panel_design_class = "svd_question well well-sm svd_q_design_border";
+
 function createQuestionDesignItem(onClick, text) {
     var res = document.createElement("li");
     var btn = document.createElement("button");
@@ -3821,6 +3827,7 @@ function createQuestionDesignItem(onClick, text) {
     return res;
 }
 function createElementAddons(data, isPanel) {
+
     var main = document.createElement("div");
     main.className = "svd_question_menu btn-group";
     main["role"] = "group";
@@ -5373,11 +5380,6 @@ __WEBPACK_IMPORTED_MODULE_2__propertyEditorBase__["a" /* SurveyPropertyEditorBas
 /* unused harmony export SurveyPropertySetValueTrigger */
 /* unused harmony export SurveyPropertyTriggerObjects */
 
-
-
-
-
-
 var SurveyPropertyTriggersEditor = (function (_super) {
     __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SurveyPropertyTriggersEditor, _super);
     function SurveyPropertyTriggersEditor() {
@@ -5973,32 +5975,6 @@ var Version;
 Version = "" + "0.12.8";
 
 global["jQuery"] = __WEBPACK_IMPORTED_MODULE_1_jquery__;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //editorLocalization
 
