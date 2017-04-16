@@ -3844,7 +3844,7 @@ function createElementAddons(data, isPanel) {
     main.appendChild(btn);
     var ul = document.createElement("ul");
     ul.className = "dropdown-menu";
-    ul.appendChild(createQuestionDesignItem(data.copyQuestionClick, data.getEditorLocString('survey.addToToolbox')));
+    //ul.appendChild(createQuestionDesignItem(data.copyQuestionClick, data.getEditorLocString('survey.addToToolbox')));
     ul.appendChild(createQuestionDesignItem(data.fastCopyQuestionClick, data.getEditorLocString('survey.copy')));
     var deleteLocaleName = isPanel ? 'survey.deletePanel' : 'survey.deleteQuestion';
     ul.appendChild(createQuestionDesignItem(data.deleteCurrentObjectClick, data.getEditorLocString(deleteLocaleName)));
